@@ -76,7 +76,7 @@ function Login() {
           {/* Contenedor del Captcha centrado */}
           <div className="recaptcha-container">
             <ReCAPTCHA
-              sitekey="6LeW0fAqAAAAAKhW6gWux26t_euhE_Qg3VP4NVBv" // Reemplaza con tu clave de sitio de Google reCAPTCHA
+              sitekey="6LfDi_cqAAAAAEMuXTyPI0PmJO0A0rOTtio8DDXI" // Reemplaza con tu clave de sitio de Google reCAPTCHA
               onChange={handleCaptchaChange}
             />
           </div>
