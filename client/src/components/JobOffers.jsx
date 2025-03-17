@@ -26,7 +26,7 @@ function JobOffers() {
 
   // Cargar todas las ofertas al montar el componente
   useEffect(() => {
-    fetch('/api/jobs')
+    fetch('https://back-zxtv.onrender.com/api/jobs')
       .then((res) => {
         if (!res.ok) throw new Error('Error al obtener las ofertas');
         return res.json();

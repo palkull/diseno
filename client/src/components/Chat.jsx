@@ -24,7 +24,7 @@ function Chat() {
   // Polling: actualiza los mensajes cada 3 segundos
   useEffect(() => {
     const fetchMessages = () => {
-      fetch('/api/mensaje')
+      fetch('https://back-zxtv.onrender.com/api/mensaje')
         .then((res) => res.json())
         .then((data) => setMessages(data))
         .catch((err) => console.error('Error obteniendo mensajes:', err));
@@ -45,7 +45,7 @@ function Chat() {
           !msg.seen
       );
       unseenMessages.forEach((msg) => {
-        fetch(`/api/mensaje/seen/${msg.id}`, { method: 'PUT' });
+        fetch(`https://back-zxtv.onrender.com/api/mensaje/seen/${msg.id}`, { method: 'PUT' });
       });
     }
   }, [selectedUser, messages, sender_id]);
@@ -62,7 +62,7 @@ function Chat() {
       tipo = customMessageType.trim();
     }
     try {
-      const res = await fetch('/api/mensaje', {
+      const res = await fetch('https://back-zxtv.onrender.com/api/mensaje', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

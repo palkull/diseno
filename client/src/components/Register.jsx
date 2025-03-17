@@ -42,7 +42,7 @@ function Register() {
     }
 
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch('https://back-zxtv.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, email, password }),

@@ -12,7 +12,7 @@ function Navbar() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (user) {
-      await fetch('http://localhost:5000/api/auth/logout', {
+      await fetch('https://back-zxtv.onrender.com/api/auth/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id }),

@@ -5,7 +5,7 @@ function ListaUsuarios({ onSelectUser, selectedUser }) {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/usuarios')
+    fetch('https://back-zxtv.onrender.com/api/usuarios')
       .then(response => {
         if (!response.ok) {
           throw new Error(`Error al obtener usuarios: ${response.status} ${response.statusText}`);
