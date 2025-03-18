@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import icono from '../assets/Logo.jpeg';
@@ -7,12 +7,22 @@ import { FaUniversity, FaBriefcase, FaComments, FaCalendarAlt, FaSignOutAlt } fr
 
 function Navbar() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUser(JSON.parse(localStorage.getItem('user')));
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const handleLogout = async () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-
     if (user) {
-      await fetch('https://back-zxtv.onrender.com/api/auth/logout', {
+      await fetch('http://localhost:5000/api/auth/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id }),
@@ -21,7 +31,9 @@ function Navbar() {
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    setUser(null);
     navigate('/');
+    window.dispatchEvent(new Event('storage'));
   };
 
   return (
@@ -30,30 +42,31 @@ function Navbar() {
         <div className="logo">
           <img src={icono} alt="Logo" className="navbar-logo" />
         </div>
+        {user && <p className="user-name"><p>Sesión iniciada con:</p>{user.nombre}</p>}
       </div>
 
       <div className="navbar-middle">
         <ul className="nav-links">
           <li>
-            <Link to="/university">
+            <Link to="/university" className="nav-item">
               <FaUniversity className="nav-icon" />
               Universidad
             </Link>
           </li>
           <li>
-            <Link to="/jobs">
+            <Link to="/jobs" className="nav-item">
               <FaBriefcase className="nav-icon" />
               Ofertas de Trabajo
             </Link>
           </li>
           <li>
-            <Link to="/chat">
+            <Link to="/chat" className="nav-item">
               <FaComments className="nav-icon" />
               Mensajería
             </Link>
           </li>
           <li>
-            <Link to="/calendar">
+            <Link to="/calendar" className="nav-item">
               <FaCalendarAlt className="nav-icon" />
               Calendario
             </Link>
