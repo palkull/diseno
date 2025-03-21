@@ -1,8 +1,8 @@
 // client/src/components/UniversityServices.jsx
-import React from 'react';
 import '../styles/UniversityServices.css';
-
+import React, { useEffect } from 'react';
 function UniversityServices() {
+  
   useEffect(() => {
       // Cargar el script de Google Analytics
       const script = document.createElement("script");

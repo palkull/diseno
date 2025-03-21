@@ -1,7 +1,8 @@
 // client/src/components/LayoutWithNavbar.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import { NavLink, useLocation } from 'react-router-dom';
+
 
 function Breadcrumbs() {
   useEffect(() => {
