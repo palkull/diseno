@@ -4,6 +4,22 @@ import '../styles/Chat.css'; // Asegúrate de importar el nuevo archivo de estil
 import ListaUsuarios from './ListaUsuarios';
 
 function Chat() {
+  useEffect(() => {
+      // Cargar el script de Google Analytics
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-E50NMJBKY5";
+      document.head.appendChild(script);
+  
+      const script2 = document.createElement("script");
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E50NMJBKY5');
+      `;
+      document.head.appendChild(script2);
+    }, []);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);

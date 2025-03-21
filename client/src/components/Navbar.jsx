@@ -6,6 +6,22 @@ import icono from '../assets/Logo.jpeg';
 import { FaUniversity, FaBriefcase, FaComments, FaCalendarAlt, FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar() {
+  useEffect(() => {
+      // Cargar el script de Google Analytics
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-E50NMJBKY5";
+      document.head.appendChild(script);
+  
+      const script2 = document.createElement("script");
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E50NMJBKY5');
+      `;
+      document.head.appendChild(script2);
+    }, []);
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
